@@ -295,7 +295,7 @@ const GUI = function(pars) {
           } else {
             dom.removeClass(_this.__ul, GUI.CLASS_CLOSED);
             if (params.uniqueOpened && _this.parent) {
-              const folders = _this.parent.__folders
+              const folders = _this.parent.__folders;
               for (const name in folders) {
                 if (name !== _this.name) {
                   folders[name].close();
@@ -571,7 +571,7 @@ common.extend(
     },
 
     addContorller: function (contorller) {
-      return addContorller(this, contorller)
+      return addContorller(this, contorller);
     },
 
     /**
@@ -1201,7 +1201,7 @@ function addContorller(gui, controller, params) {
 
   gui.__controllers.push(controller);
 
-  return controller
+  return controller;
 }
 
 function getLocalStorageHash(gui, key) {
