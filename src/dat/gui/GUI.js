@@ -208,6 +208,12 @@ const GUI = function(pars) {
         }
       },
 
+      uniqueOpened: {
+        get: function () {
+          return params.uniqueOpened;
+        }
+      },
+
       /**
        * Handles <code>GUI</code>'s position of open/close button
        * @type Boolean
@@ -288,6 +294,14 @@ const GUI = function(pars) {
             dom.addClass(_this.__ul, GUI.CLASS_CLOSED);
           } else {
             dom.removeClass(_this.__ul, GUI.CLASS_CLOSED);
+            if (params.uniqueOpened && _this.parent) {
+              const folders = _this.parent.__folders
+              for (const name in folders) {
+                if (name !== _this.name) {
+                  folders[name].close();
+                }
+              }
+            }
           }
           // For browsers that aren't going to respect the CSS transition,
           // Lets just check our height against the window height right off
@@ -556,6 +570,10 @@ common.extend(
       );
     },
 
+    addContorller: function (contorller) {
+      return addContorller(this, contorller)
+    },
+
     /**
      * Removes the given controller from the GUI.
      * @param {Controller} controller
@@ -631,6 +649,8 @@ common.extend(
         // Pass down the loaded data
         newGuiParams.load = this.load.folders[name];
       }
+
+      newGuiParams.uniqueOpened = this.uniqueOpened;
 
       const gui = new GUI(newGuiParams);
       this.__folders[name] = gui;
@@ -1145,6 +1165,13 @@ function add(gui, object, property, params) {
     controller = ControllerFactory.apply(gui, factoryArgs);
   }
 
+  return addContorller(gui, controller, params);
+}
+
+function addContorller(gui, controller, params) {
+  if (!(controller instanceof Controller)) throw Error('controller not `Controller`');
+  if (!params) params = {};
+
   if (params.before instanceof Controller) {
     params.before = params.before.__li;
   }
@@ -1174,7 +1201,7 @@ function add(gui, object, property, params) {
 
   gui.__controllers.push(controller);
 
-  return controller;
+  return controller
 }
 
 function getLocalStorageHash(gui, key) {

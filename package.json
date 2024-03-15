@@ -1,5 +1,6 @@
 {
   "name": "dat.gui",
+  "type": "module",
   "version": "0.7.9",
   "description": "A lightweight graphical user interface for changing variables in JavaScript.",
   "main": "build/dat.gui.js",
@@ -38,7 +39,6 @@
     "extend": "^3.0.2",
     "jsdoc-to-markdown": "^5.0.3",
     "replace-between": "0.0.8",
-    "rollup": "^0.54.1",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-node-resolve": "^3.3.0",
@@ -77,5 +77,8 @@
       "no-return-assign": 0,
       "no-restricted-globals": 0
     }
+  },
+  "dependencies": {
+    "rollup": "^4.13.0"
   }
 }

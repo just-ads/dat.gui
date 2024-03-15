@@ -18,7 +18,7 @@ import cleanup from 'rollup-plugin-cleanup';
 import babel from 'rollup-plugin-babel';
 import sass from 'rollup-plugin-sass';
 
-const banner = fs.readFileSync(path.join(__dirname, 'licenseBanner.txt'));
+const banner = fs.readFileSync(path.join(process.cwd(), 'licenseBanner.txt'));
 
 export default {
   input: 'src/dat/index.js',
