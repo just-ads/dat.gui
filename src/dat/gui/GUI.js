@@ -570,8 +570,8 @@ common.extend(
       );
     },
 
-    addContorller: function (contorller) {
-      return addContorller(this, contorller);
+    addController: function (controller) {
+      return addController(this, controller);
     },
 
     /**
@@ -1165,10 +1165,10 @@ function add(gui, object, property, params) {
     controller = ControllerFactory.apply(gui, factoryArgs);
   }
 
-  return addContorller(gui, controller, params);
+  return addController(gui, controller, params);
 }
 
-function addContorller(gui, controller, params) {
+function addController(gui, controller, params) {
   if (!(controller instanceof Controller)) throw Error('controller not `Controller`');
   if (!params) params = {};
 
